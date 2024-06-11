@@ -37,10 +37,13 @@ export function SelectCity({ onSelect }) {
 
       <div className='select-list'>
         {
-          city &&
-          <button type="button" key={city.id} onClick={() => onSelect(city)}>
-            <p>{city.name}</p>
-          </button>
+          city.length > 0 &&
+          city.map((item) => (
+            item &&
+            <button type="button" key={item.id} onClick={() => onSelect(item)}>
+              <p>{item.name}</p>
+            </button>
+          ))
         }
       </div>
     </div>

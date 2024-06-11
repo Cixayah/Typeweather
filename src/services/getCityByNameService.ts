@@ -18,8 +18,8 @@ export async function getCityByNameService(name: string) {
       latitude: data.coord.lat,
     };
 
-    return city;
+    return [city];
   } catch (error) {
-    return null;
+    return [];
   }
 }
