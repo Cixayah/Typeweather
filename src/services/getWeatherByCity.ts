@@ -1,14 +1,22 @@
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
-import { api } from "./api";
-import { getNextDays } from "../utils/getNextDays";
-import { weatherIcons } from "../utils/weatherIcons";
+import { api } from './api';
+import { getNextDays } from '../utils/getNextDays';
+import { weatherIcons } from '../utils/weatherIcons';
 
-export async function getWeatherByCity({ latitude, longitude }) {
+interface GetWeatherProps {
+  latitude: number;
+  longitude: number;
+}
+
+export async function getWeatherByCity({
+  latitude,
+  longitude,
+}: GetWeatherProps) {
   const { data } = await api.get(`/forecast?lat=${latitude}&lon=${longitude}`);
   const { main, weather, wind, pop } = data.list[0];
 
-  console.log(weather)
+  console.log(weather);
 
   const today = {
     weather: {
@@ -23,9 +31,9 @@ export async function getWeatherByCity({ latitude, longitude }) {
       probability: pop * 100,
       wind_speed: wind.speed,
       humidity: main.humidity,
-      temp_kf: Math.floor(main.temp_kf)
-    }
-  }
+      temp_kf: Math.floor(main.temp_kf),
+    },
+  };
 
   const days = getNextDays();
   const daysAdded = [];
@@ -46,10 +54,10 @@ export async function getWeatherByCity({ latitude, longitude }) {
         min: Math.floor(item.main.temp_min),
         max: Math.ceil(item.main.temp_max),
         weather: item.weather[0].description,
-        icon: details.icon_day
+        icon: details.icon_day,
       });
     }
   });
 
-  return { today, nextDays }
+  return { today, nextDays };
 }
