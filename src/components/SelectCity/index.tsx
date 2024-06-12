@@ -5,7 +5,7 @@ import { Input } from '../Input';
 import { getCityByNameService, CityProps } from '../../services/getCityByNameService';
 
 interface Props {
-  onSelect: (city: CityProps) => void;
+  onSelect: (item: CityProps) => void;
 }
 
 export function SelectCity({ onSelect }: Props) {
