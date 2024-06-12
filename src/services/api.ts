@@ -10,3 +10,4 @@ export const api = axios.create({
     appid: VITE_WEATHER_APP_API,
   },
 });
+

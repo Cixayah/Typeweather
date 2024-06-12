@@ -7,9 +7,22 @@ export interface CityProps {
   longitude: number;
 }
 
+// Typagem do retorno da Api
+export interface CityApiResponse {
+  id: string;
+  name: string;
+  sys: {
+    country?: string;
+  };
+  coord: {
+    lon: number;
+    lat: number;
+  };
+}
+
 export async function getCityByNameService(name: string): Promise<CityProps[]> {
   try {
-    const { data } = await api.get(`/weather?q=${name}`);
+    const { data } = await api.get<CityApiResponse>(`/weather?q=${name}`);
 
     const city = {
       id: data.id,
