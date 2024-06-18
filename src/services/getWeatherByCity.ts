@@ -14,14 +14,15 @@ export interface WeatherAPIResponseProps {
     pop: number;
     main: {
       temp: number;
-      feels_like: number;
       temp_min: number;
       temp_max: number;
-      pressure: number;
-      sea_level: number;
+      feels_like: number;
       grnd_level: number;
       humidity: number;
       temp_kf: number;
+    };
+    wind: {
+      speed: number;
     };
   };
 }
